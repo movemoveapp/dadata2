@@ -1,0 +1,43 @@
+{
+    "name": "movemoveapp/dadata2",
+    "description": "A Laravel SDK for interacting with the DaData API, providing seamless integration for address validation, data enrichment, and other data processing features.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "movemove",
+        "movemoveapp",
+        "dadata",
+        "laravel",
+        "sdk",
+        "address",
+        "email",
+        "passport",
+        "bank",
+        "name",
+        "patronymic",
+        "surname"
+    ],
+    "version": "2.0.1",
+    "autoload": {
+        "psr-4": {
+            "MoveMoveApp\\DaData2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MoveMove LLC",
+            "email": "support@movemove.io"
+        },
+        {
+            "name": "Dmitry Kovalev",
+            "email": "d.kovalev@movemove.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php" : "^8.1|^8.2|^8.3",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.5.1",
+        "guzzlehttp/psr7": "^2.5"
+    }
+}
