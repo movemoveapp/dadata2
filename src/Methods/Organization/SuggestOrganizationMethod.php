@@ -20,7 +20,7 @@ class SuggestOrganizationMethod extends BaseMethod
 {
     protected string $method        = 'POST';
     protected string $entryPoint;
-    protected string $expect        = 'DaDataSuggestionsOrganization';
+    protected string $expect        = 'Organization';
     protected array  $parameters    = [
         'query'             => 'string',
         'count'             => 'integer',
