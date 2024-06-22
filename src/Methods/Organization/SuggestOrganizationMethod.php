@@ -2,7 +2,8 @@
 
 namespace MoveMoveApp\DaData2\Methods\Organization;
 
-
+use GuzzleHttp\Client;
+use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\BaseMethod;
 
 /**
@@ -18,8 +19,8 @@ use MoveMoveApp\DaData2\Methods\BaseMethod;
 class SuggestOrganizationMethod extends BaseMethod
 {
     protected string $method        = 'POST';
-    protected string $entryPoint    = 'rs/suggest/party';
-    protected string $expect        = 'Organization';
+    protected string $entryPoint;
+    protected string $expect        = 'DaDataSuggestionsOrganization';
     protected array  $parameters    = [
         'query'             => 'string',
         'count'             => 'integer',
@@ -29,4 +30,15 @@ class SuggestOrganizationMethod extends BaseMethod
         'locations'         => 'array',
         'locations_boost'   => 'array',
     ];
+
+    /**
+     * @param Client $client
+     *
+     */
+    public function __construct(Client &$client)
+    {
+        $this->entryPoint = Router::suggestOrganization();
+
+        parent::__construct($client);
+    }
 }
