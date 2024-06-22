@@ -10,11 +10,14 @@ use GuzzleHttp\Exception\GuzzleException;
 
 abstract class BaseMethod
 {
-    protected Client                   $client;
+    protected Client $client;
 
+    /**
+     * @param Client $client
+     */
     public function __construct(Client &$client)
     {
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -31,9 +34,10 @@ abstract class BaseMethod
         try {
             $result = $this->client->request($this->method, $this->entryPoint, ['json' => $arguments]);
 
-            dd(json_decode($result->getBody()));
+            // dd(json_decode($result->getBody()));
 
             return Type::cast(json_decode($result->getBody()), $this->expect);
+
         } catch (ClientException $exception) {
             $errorResponse = $exception->getResponse();
             $error         = json_decode($errorResponse->getBody());

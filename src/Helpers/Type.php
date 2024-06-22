@@ -2,6 +2,7 @@
 
 namespace MoveMoveApp\DaData2\Helpers;
 
+use Dflydev\DotAccessData\Exception\DataException;
 use MoveMoveApp\DaData2\Exceptions\DaDataIntegrationException;
 use Throwable;
 
@@ -10,6 +11,7 @@ class Type
     /**
      * @param $value
      * @param $type
+     *
      * @return mixed
      * @throws DaDataIntegrationException
      */
@@ -27,7 +29,7 @@ class Type
                 try {
                     return static::cast($value, $_type);
                 } catch (Throwable $e) {
-                    // We need to check each available type, so just skip exception.
+                    throw new DataException($e);
                 }
             }
 
@@ -47,7 +49,8 @@ class Type
 
     /**
      * @param $object
-     * @return array|mixed
+     *
+     * @return mixed
      */
     public static function strip($object): mixed
     {
@@ -65,8 +68,9 @@ class Type
     }
 
     /**
-     * @param $object
+     * @param        $object
      * @param string $type
+     *
      * @return bool
      */
     private static function isCasted($object, string $type): bool
@@ -79,8 +83,9 @@ class Type
     }
 
     /**
-     * @param iterable $values
+     * @param $values
      * @param $types
+     *
      * @return array
      * @throws DaDataIntegrationException
      */
@@ -103,8 +108,9 @@ class Type
     }
 
     /**
-     * @param $value
+     * @param        $value
      * @param string $type
+     *
      * @return mixed
      * @throws DaDataIntegrationException
      */
@@ -123,17 +129,17 @@ class Type
             }
         }
 
-        if (class_exists($class = "App\\Integrations\\DaData\\Objects\\$type")) {
+        if (class_exists($class = "MoveMoveApp\\DaData2\\Objects\\$type")) {
             return $class::create($value);
         }
 
-        var_dump([$value, $value_type, $type]);
         throw new DaDataIntegrationException("Cannot cast value of type {$value_type} to type {$type}");
     }
 
     /**
-     * @param $object
+     * @param       $object
      * @param array $parameters
+     *
      * @return array
      * @throws DaDataIntegrationException
      */
@@ -155,8 +161,9 @@ class Type
     }
 
     /**
-     * @param $object
+     * @param       $object
      * @param array $parameters
+     *
      * @return array
      * @throws DaDataIntegrationException
      */

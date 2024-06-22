@@ -5,7 +5,8 @@ namespace MoveMoveApp\DaData2\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method public string findOrganizationById(array $parameters)
+ * @method static findOrganizationById(string[] $array)
+ * @method static suggestOrganization(string[] $array)
  */
 class DaDataOrganization extends Facade
 {
