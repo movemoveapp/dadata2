@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization\Document;
+namespace MoveMoveApp\DaData2\Objects\Document;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -11,7 +11,7 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
  * @property string|null $issue_date
  * @property string|null $issue_authority
  */
-class FtsRegistration extends BaseObject
+class Fts extends BaseObject
 {
     protected array $attributes = [
         'type'              => 'string|null',
