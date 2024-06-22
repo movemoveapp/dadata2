@@ -56,4 +56,12 @@ class Router
         return 'rs/findById/party';
     }
 
+    /**
+     * @return string
+     */
+    public static function suggestOrganization(): string
+    {
+        return 'rs/suggest/party';
+    }
+
 }
