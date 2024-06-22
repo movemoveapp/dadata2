@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Integrations\DaData\Contracts;
+namespace MoveMoveApp\DaData2\Objects;
 
-use App\Integrations\DaData\Exceptions\DaDataIntegrationException;
-use App\Integrations\DaData\Helpers\Type;
 use ArrayIterator;
 use Illuminate\Support\Arr;
 use IteratorAggregate;
 use JsonSerializable;
+use MoveMoveApp\DaData2\Exceptions\DaDataIntegrationException;
+use MoveMoveApp\DaData2\Helpers\Type;
 use Traversable;
 
-abstract class DaDataObject implements IteratorAggregate, JsonSerializable
+abstract class BaseObject implements IteratorAggregate, JsonSerializable
 {
     protected array $properties;
     protected array $attributes = [];
 
     /**
      * @param object|array $object
+     *
      * @throws DaDataIntegrationException
      */
     public function __construct(object|array $object)
@@ -29,7 +30,7 @@ abstract class DaDataObject implements IteratorAggregate, JsonSerializable
     }
 
     /**
-     * @param object|array|null $object |array $object
+     * @param object|array|null $object
      *
      * @return static
      * @throws DaDataIntegrationException
@@ -44,6 +45,7 @@ abstract class DaDataObject implements IteratorAggregate, JsonSerializable
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -54,6 +56,7 @@ abstract class DaDataObject implements IteratorAggregate, JsonSerializable
     /**
      * @param $key
      * @param $value
+     *
      * @return void
      * @throws DaDataIntegrationException
      */
@@ -67,6 +70,7 @@ abstract class DaDataObject implements IteratorAggregate, JsonSerializable
 
     /**
      * @param $key
+     *
      * @return bool
      */
     public function __isset($key)
@@ -76,6 +80,7 @@ abstract class DaDataObject implements IteratorAggregate, JsonSerializable
 
     /**
      * @param $key
+     *
      * @return void
      * @throws DaDataIntegrationException
      */
