@@ -1,196 +1,176 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects;
+namespace App\Integrations\DaData\Contracts;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Enumerable;
-use Illuminate\Support\Str;
-use Illuminate\Support\Traits\EnumeratesValues;
+use App\Integrations\DaData\Exceptions\DaDataIntegrationException;
+use App\Integrations\DaData\Helpers\Type;
+use ArrayIterator;
+use Illuminate\Support\Arr;
+use IteratorAggregate;
+use JsonSerializable;
+use Traversable;
 
-abstract class BaseObject extends Collection
+abstract class DaDataObject implements IteratorAggregate, JsonSerializable
 {
+    protected array $properties;
+    protected array $attributes = [];
+
     /**
-     * Builds collection entity.
-     *
-     * @param  array|mixed  $data
+     * @param object|array $object
+     * @throws DaDataIntegrationException
      */
-    public function __construct($data)
+    public function __construct(object|array $object)
     {
-        parent::__construct($this->getRawResult($data));
+        if (! is_array($object) && ! is_object($object)) {
+            throw new DaDataIntegrationException('Cannot cast value of type '.gettype($object).' to type '.static::class);
+        }
+
+        $this->properties = Type::cast($object, $this->attributes);
     }
 
     /**
-     * Returns raw result.
+     * @param object|array|null $object |array $object
+     *
+     * @return static
+     * @throws DaDataIntegrationException
      */
-    public function getRawResult($data): mixed
+    public static function create(object|array|null $object): static
     {
-        return data_get($data, 'result', $data);
+        if (! $object) {
+            return new static([]);
+        }
+        return new static($object);
     }
 
     /**
-     * Magically access collection data.
-     *
+     * @param $key
      * @return mixed
      */
     public function __get($key)
     {
-        return $this->getPropertyValue($key);
-    }
-
-    public function __set(string $name, mixed $value): void
-    {
-        throw new InvalidArgumentException(sprintf('Cannot set property “%s” on “%s” immutable object.', $name, static::class));
+        return $this->properties[$key];
     }
 
     /**
-     * Magically map to an object class (if exists) and return data.
-     *
-     * @param  string  $property  Name of the property or relation.
-     * @param  mixed  $default  Default value or \Closure that returns default value.
+     * @param $key
+     * @param $value
+     * @return void
+     * @throws DaDataIntegrationException
      */
-    protected function getPropertyValue(string $property, mixed $default = null): mixed
+    public function __set($key, $value)
     {
-        $property = Str::snake($property);
-        if (! $this->offsetExists($property)) {
-            return value($default);
+        if (! isset($this->attributes[$key])) {
+            throw new DaDataIntegrationException('Cannot set value of unknown property '.$key);
         }
-
-        $value = $this->items[$property];
-
-        $relations = $this->relations();
-        if (isset($relations[$property])) {
-            return $this->getRelationValue($property, $value);
-        }
-
-        /** @var BaseObject $class */
-        $class = 'MoveMoveApp\DaData2\Objects\\'.Str::studly($property);
-
-        if (class_exists($class)) {
-            return $class::make($value);
-        }
-
-        if (is_array($value)) {
-            return DaDataObject::make($value);
-        }
-
-        return $value;
+        $this->properties[$key] = Type::cast($value, $this->attributes[$key]);
     }
 
     /**
-     * Property relations.
+     * @param $key
+     * @return bool
      */
-    abstract public function relations(): array;
+    public function __isset($key)
+    {
+        return isset($this->properties[$key]);
+    }
 
     /**
-     * @return array|Enumerable|EnumeratesValues|BaseObject
+     * @param $key
+     * @return void
+     * @throws DaDataIntegrationException
      */
-    protected function getRelationValue(string $relativeName, iterable $relativeData): mixed
+    public function __unset($key)
     {
-        /** @var class-string<BaseObject>|list<class-string<BaseObject>> $relative */
-        $relative = $this->relations()[$relativeName];
-
-        if (is_string($relative)) {
-            if (! class_exists($relative)) {
-                throw new InvalidArgumentException(sprintf('Could not load “%s” relative: class “%s” not found.', $relativeName, $relative));
-            }
-
-            return $relative::make($relativeData);
+        if (! isset($this->attributes[$key])) {
+            throw new DaDataIntegrationException('Cannot set value of unknown property '.$key);
         }
-
-        /** @var class-string<BaseObject> $relativeClass */
-        $relativeClass = $relative[0];
-        $relatedObjects = Collection::make();
-        // @todo array type can be used in v4
-        foreach ($relativeData as $data) {
-            $relatedObjects->add($relativeClass::make($data));
-        }
-
-        return $relatedObjects;
-    }
-
-    public function __isset(string $name): bool
-    {
-        return $this->getPropertyValue($name) !== null;
+        unset($this->properties[$key]);
     }
 
     /**
-     * Get an item from the collection by key.
-     *
-     * @param  mixed  $key
-     * @param  mixed  $default
+     * @return false|string
      */
-    public function get($key, $default = null): mixed
+    public function __toString()
     {
-        $value = parent::get($key, $default);
-
-        if (is_array($value)) {
-            return $this->getPropertyValue($key, $default);
-        }
-
-        return $value;
+        return json_encode($this->toArray());
     }
 
     /**
-     * Returns raw response.
-     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
      * @return array|mixed
      */
-    public function getRawResponse(): mixed
+    public function __debugInfo()
     {
-        return $this->items;
+        return $this->properties;
     }
 
     /**
-     * Get Status of request.
-     */
-    public function getStatus(): mixed
-    {
-        return data_get($this->items, 'ok', false);
-    }
-
-    /**
-     * Determine if the object is of given type.
-     */
-    public function isType(string $type): bool
-    {
-        if ($this->offsetExists($type)) {
-            return true;
-        }
-
-        return $this->objectType() === $type;
-    }
-
-    /**
-     * Detect type based on fields.
-     */
-    public function objectType(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * Magic method to get properties dynamically.
+     * Get associative array representation of this object.
      *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return Type::strip($this->properties);
+    }
+
+    /**
+     * Get associative array representation of this object.
+     *
+     * @return string
+     */
+    public function toJson(): string
+    {
+        return (string) $this;
+    }
+
+    /**
+     * Get value(s) using dot notation.
+     *
+     * @param array|string $key
+     * @param mixed|null $default
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function get(array|string $key, mixed $default = null): mixed
     {
-        if (! Str::startsWith($method, 'get')) {
-            return false;
+        if (is_array($key)) {
+            return $this->getMany($key);
         }
 
-        $property = substr($method, 3);
-
-        return $this->getPropertyValue($property);
+        return Arr::get($this->toArray(), $key, $default);
     }
 
     /**
-     * Determine the type by given types.
+     * @param $keys
+     * @return array
      */
-    protected function findType(array $types): ?string
+    private function getMany($keys): array
     {
-        return $this->keys()
-            ->intersect($types)
-            ->pop();
+        $data = [];
+
+        foreach ($keys as $key => $default) {
+            if (is_numeric($key)) {
+                [$key, $default] = [$default, null];
+            }
+
+            $data[$key] = Arr::get($this->items, $key, $default);
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return Traversable
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->properties);
     }
 }
