@@ -2,7 +2,7 @@
 
 namespace MoveMoveApp\DaData2\Objects;
 
-use MoveMoveApp\DaData2\Objects\Organization\By\Suggestions;
+use MoveMoveApp\DaData2\Objects\Organization\Ru\Suggestions;
 
 /**
  * @property Suggestions[] $suggestions
