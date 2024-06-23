@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -14,6 +14,6 @@ class Address extends BaseObject
     protected array $attributes = [
         'value'                 => 'string|null',
         'unrestricted_value'    => 'string|null',
-        'data'                  => 'Organization\\GranularAddress'
+        'data'                  => 'Organization\\Ru\\GranularAddress'
     ];
 }

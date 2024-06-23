@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -12,6 +12,6 @@ class Invalidity extends BaseObject
 {
     protected array $attributes = [
         'code'      => 'string|null',
-        'decision'  => 'Organization\\Decision',
+        'decision'  => 'Organization\\Ru\\Decision',
     ];
 }

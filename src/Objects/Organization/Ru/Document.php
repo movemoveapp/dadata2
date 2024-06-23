@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 use MoveMoveApp\DaData2\Objects\Document\Fts;

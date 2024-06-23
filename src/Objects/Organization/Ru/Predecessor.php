@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -9,7 +9,7 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
  * @property string|null $inn
  * @property string|null $name
  */
-class Successor extends BaseObject
+class Predecessor extends BaseObject
 {
     protected array $attributes = [
         'ogrn' => 'string|null',

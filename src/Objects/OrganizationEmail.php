@@ -2,7 +2,7 @@
 
 namespace MoveMoveApp\DaData2\Objects;
 
-use MoveMoveApp\DaData2\Objects\Organization\EmailSuggestions;
+use MoveMoveApp\DaData2\Objects\Organization\Ru\EmailSuggestions;
 
 /**
  * @property EmailSuggestions
@@ -10,6 +10,6 @@ use MoveMoveApp\DaData2\Objects\Organization\EmailSuggestions;
 class OrganizationEmail extends BaseObject
 {
     protected array $attributes = [
-        'suggestions' => 'Organization\\EmailSuggestions',
+        'suggestions' => 'Organization\\Ru\\EmailSuggestions',
     ];
 }

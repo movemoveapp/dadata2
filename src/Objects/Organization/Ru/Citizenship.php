@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -11,7 +11,7 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
 class Citizenship extends BaseObject
 {
     protected array $attributes = [
-        'code' => 'Organization\\Code',
-        'name' => 'Organization\\Name',
+        'code' => 'Organization\\Ru\\Code',
+        'name' => 'Organization\\Ru\\Name',
     ];
 }

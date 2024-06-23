@@ -1,13 +1,19 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization;
+namespace MoveMoveApp\DaData2\Objects\Organization\Ru;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
 /**
  * @property string|null $tax_system
+ * @property string|null $year
+ * @property string|null $income
+ * @property string|null $revenue
+ * @property string|null $expense
+ * @property string|null $debt
+ * @property string|null $penalty
  */
-class Company extends BaseObject
+class Finance extends BaseObject
 {
     protected array $attributes = [
         'tax_system'    => 'string|null',
