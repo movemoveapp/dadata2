@@ -13,7 +13,7 @@ use MoveMoveApp\DaData2\Methods\BaseMethod;
  *
  * @link https://dadata.ru/api/find-party/
  */
-class FindOrganizationByIdMethod extends BaseMethod
+class FindRussianOrganizationMethod extends BaseMethod
 {
     protected string $method        = 'POST';
     protected string $entryPoint;
