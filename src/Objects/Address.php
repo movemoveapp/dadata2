@@ -2,14 +2,14 @@
 
 namespace MoveMoveApp\DaData2\Objects;
 
-use MoveMoveApp\DaData2\Objects\Organization\Ru\Suggestions;
+use MoveMoveApp\DaData2\Objects\Address\Suggest;
 
 /**
- * @property Suggestions[] $suggestions
+ * @property Suggest[] $suggestions
  */
-class Addres extends BaseObject
+class Address extends BaseObject
 {
     protected array $attributes = [
-        'suggestions' => 'Organization\\Ru\\Suggestions[]',
+        'suggestions' => 'Address\\Suggest[]',
     ];
 }

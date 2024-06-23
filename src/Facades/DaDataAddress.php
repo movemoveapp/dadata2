@@ -5,7 +5,7 @@ namespace MoveMoveApp\DaData2\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static findRussianOrganization(string[] $array)
+ * @method static suggest(string[] $array)
  */
 class DaDataAddress extends Facade
 {

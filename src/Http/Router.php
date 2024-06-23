@@ -37,16 +37,6 @@ class Router
     }
 
     /**
-     * Get URI to suggest by address
-     *
-     * @return string
-     */
-    public static function suggestAddress(): string
-    {
-        return sprintf('%s/%s', self::getUri(), 'rs/suggest/address');
-    }
-
-    /**
      * @return string
      */
     public static function findOrganizationById(): string
@@ -92,6 +82,14 @@ class Router
     public static function suggestOrganization(): string
     {
         return 'rs/suggest/party';
+    }
+
+    /**
+     * @return string
+     */
+    public static function suggestAddress(): string
+    {
+        return 'rs/suggest/address';
     }
 
 }
