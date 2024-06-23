@@ -15,7 +15,7 @@ class DaDataServiceProvider extends ServiceProvider
             return new OrganizationApi();
         });
         $this->app->singleton('dadata_address', function () {
-
+            return new AddressApi();
         });
     }
 
