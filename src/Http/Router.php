@@ -65,6 +65,14 @@ class Router
     /**
      * @return string
      */
+    public static function findKazakhstanOrganization(): string
+    {
+        return 'rs/suggest/party_kz';
+    }
+
+    /**
+     * @return string
+     */
     public static function findOrganizationByEmail(): string
     {
         return 'rs/findByEmail/company';
