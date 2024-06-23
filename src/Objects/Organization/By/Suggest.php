@@ -1,6 +1,6 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Objects\Organization\Kz;
+namespace MoveMoveApp\DaData2\Objects\Organization\By;
 
 use MoveMoveApp\DaData2\Objects\BaseObject;
 
@@ -9,11 +9,11 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
  * @property string       $unrestricted_value
  * @property Organization $data
  */
-class Suggestions extends BaseObject
+class Suggest extends BaseObject
 {
     protected array $attributes = [
         'value'                 => 'string',
         'unrestricted_value'    => 'string',
-        'data'                  => 'Organization\\Kz\\Organization',
+        'data'                  => 'Organization\\By\\Organization',
     ];
 }

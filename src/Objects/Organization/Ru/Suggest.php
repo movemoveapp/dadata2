@@ -9,7 +9,7 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
  * @property string       $unrestricted_value
  * @property Organization $data
  */
-class Suggestions extends BaseObject
+class Suggest extends BaseObject
 {
     protected array $attributes = [
         'value'                 => 'string',
