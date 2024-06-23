@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static findOrganizationById(string[] $array)
  * @method static suggestOrganization(string[] $array)
  * @method static affiliatedOrganization(string[] $array)
+ * @method static findOrganizationByEmail(string[] $array)
  */
 class DaDataOrganization extends Facade
 {
