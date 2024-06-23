@@ -57,6 +57,14 @@ class Router
     /**
      * @return string
      */
+    public static function findBelarusianOrganization(): string
+    {
+        return 'rs/suggest/party_by';
+    }
+
+    /**
+     * @return string
+     */
     public static function findOrganizationByEmail(): string
     {
         return 'rs/findByEmail/company';
