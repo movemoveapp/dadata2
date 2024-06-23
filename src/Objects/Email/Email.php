@@ -14,10 +14,11 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
 class Email extends BaseObject
 {
     protected array $attributes = [
+        'source'    => 'string|null',
+        'email'     => 'string|null',
         'local'     => 'string|null',
         'domain'    => 'string|null',
         'type'      => 'string|null',
-        'source'    => 'string|null',
         'qc'        => 'string|null',
     ];
 }
