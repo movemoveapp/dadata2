@@ -132,4 +132,12 @@ class Router
         return 'clean/address';
     }
 
+    /**
+     * @return string
+     */
+    public static function geoLocateAddress(): string
+    {
+        return 'rs/geolocate/address';
+    }
+
 }
