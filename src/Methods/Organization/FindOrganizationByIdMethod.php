@@ -17,7 +17,7 @@ class FindOrganizationByIdMethod extends BaseMethod
 {
     protected string $method        = 'POST';
     protected string $entryPoint;
-    protected string $expect        = 'Organization';
+    protected string $expect        = 'RuOrganization';
     protected array  $parameters    = [
         'query'         => 'string',
         'count'         => 'integer',

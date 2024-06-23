@@ -2,7 +2,6 @@
 
 namespace MoveMoveApp\DaData2\Methods\Organization;
 
-
 use GuzzleHttp\Client;
 use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\BaseMethod;
@@ -24,7 +23,7 @@ class AffiliatedOrganizationMethod extends BaseMethod
 {
     protected string $method        = 'POST';
     protected string $entryPoint;
-    protected string $expect        = 'Organization';
+    protected string $expect        = 'RuOrganization';
     protected array  $parameters    = [
         'query'         => 'string',
         'count'         => 'integer',

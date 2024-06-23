@@ -7,7 +7,7 @@ use MoveMoveApp\DaData2\Objects\Organization\Ru\Suggestions;
 /**
  * @property Suggestions[] $suggestions
  */
-class Organization extends BaseObject
+class RuOrganization extends BaseObject
 {
     protected array $attributes = [
         'suggestions' => 'Organization\\Ru\\Suggestions[]',
