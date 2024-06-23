@@ -47,13 +47,27 @@ class Router
     }
 
     /**
-     * Get URI to find organization by ID (INN, ORGN)
-     *
      * @return string
      */
     public static function findOrganizationById(): string
     {
         return 'rs/findById/party';
+    }
+
+    /**
+     * @return string
+     */
+    public static function findOrganizationByEmail(): string
+    {
+        return 'rs/findByEmail/company';
+    }
+
+    /**
+     * @return string
+     */
+    public static function affiliatedOrganization(): string
+    {
+        return 'rs/findAffiliated/party';
     }
 
     /**
