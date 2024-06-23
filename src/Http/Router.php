@@ -5,7 +5,7 @@ namespace MoveMoveApp\DaData2\Http;
 class Router
 {
     /**
-     * Get DaData API URL
+     * Get DaData Suggestion API URL
      *
      * @return string
      */
@@ -15,7 +15,7 @@ class Router
     }
 
     /**
-     * Get DaData API Version
+     * Get DaData Suggestion API Version
      *
      * @return string
      */
@@ -25,7 +25,7 @@ class Router
     }
 
     /**
-     * Get URI to base resource
+     * Get Suggestion URI to base resource
      *
      * @return string
      */
@@ -34,6 +34,38 @@ class Router
         $baseResource = config('dadata.options.suggestions.base_resource') ? config('dadata.options.suggestions.base_resource') : 'suggestions/api';
 
         return sprintf('%s/%s/%s/', self::getSuggestionsUrl(), $baseResource, self::getSuggestionsVersion());
+    }
+
+    /**
+     * Get DaData Cleaner API URL
+     *
+     * @return string
+     */
+    public static function getCleanerUrl(): string
+    {
+        return config('dadata.options.cleaner.url') ? config('dadata.options.cleaner.url') : 'https://cleaner.dadata.ru';
+    }
+
+    /**
+     * Get DaData Cleaner API Version
+     *
+     * @return string
+     */
+    public static function getCleanerVersion(): string
+    {
+        return config('dadata.options.cleaner.version') ? config('dadata.options.cleaner.version') : 'v1';
+    }
+
+    /**
+     * Get Cleaner URI to base resource
+     *
+     * @return string
+     */
+    public static function getCleanerUri(): string
+    {
+        $baseResource = config('dadata.options.cleaner.base_resource') ? config('dadata.options.cleaner.base_resource') : 'api';
+
+        return sprintf('%s/%s/%s/', self::getCleanerUrl(), $baseResource, self::getCleanerVersion());
     }
 
     /**
@@ -90,6 +122,14 @@ class Router
     public static function suggestAddress(): string
     {
         return 'rs/suggest/address';
+    }
+
+    /**
+     * @return string
+     */
+    public static function cleanAddress(): string
+    {
+        return 'clean/address';
     }
 
 }

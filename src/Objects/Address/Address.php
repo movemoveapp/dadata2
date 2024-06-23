@@ -105,6 +105,7 @@ use MoveMoveApp\DaData2\Objects\BaseObject;
  * @property string|null    $qc_house
  * @property string|null    $qc
  * @property string|null    $source
+ * @property string|null    $result
  * @property string|null    $unparsed_parts
  * @property Metro[]        $metro
  * @property string[]       $history_values
@@ -212,6 +213,7 @@ class Address extends BaseObject
         'qc_house'                  => 'string|null',
         'qc'                        => 'string|null',
         'source'                    => 'string|null',
+        'result'                    => 'string|null',
         'unparsed_parts'            => 'string|null',
         'metro'                     => 'Address\\Metro[]',
         'history_values'            => 'string[]',

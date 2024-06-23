@@ -27,14 +27,16 @@ abstract class BaseMethod
      * @throws DaDataIntegrationException
      * @throws GuzzleException
      */
-    public function __invoke(array $arguments = []): mixed
+    public function __invoke(mixed $arguments = []): mixed
     {
-        $arguments = Type::flattenArray($arguments, $this->parameters);
+        if (is_array($arguments)) {
+            $arguments = Type::flattenArray($arguments, $this->parameters);
+        } else {
+            $arguments = [(string) $arguments];
+        }
 
         try {
             $result = $this->client->request($this->method, $this->entryPoint, ['json' => $arguments]);
-
-            // dd(json_decode($result->getBody()));
 
             return Type::cast(json_decode($result->getBody()), $this->expect);
 

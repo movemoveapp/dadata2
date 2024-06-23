@@ -12,10 +12,13 @@ class DaDataServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton('dadata_organization', function () {
-            return new OrganizationApi();
+            return new SuggestionsOrganizationApi();
         });
         $this->app->singleton('dadata_address', function () {
-            return new AddressApi();
+            return new SuggestionsAddressApi();
+        });
+        $this->app->singleton('dadata_address_cleaner', function () {
+            return new CleanerAddressApi();
         });
     }
 

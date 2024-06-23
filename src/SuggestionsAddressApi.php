@@ -4,10 +4,9 @@ namespace MoveMoveApp\DaData2;
 
 use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\Traits\HasAddressMethod;
-use MoveMoveApp\DaData2\Methods\Traits\HasOrganizationMethod;
 
 
-class AddressApi extends Api
+class SuggestionsAddressApi extends Api
 {
     use HasAddressMethod;
 

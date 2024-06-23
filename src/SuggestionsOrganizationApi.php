@@ -6,7 +6,7 @@ use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\Traits\HasOrganizationMethod;
 
 
-class OrganizationApi extends Api
+class SuggestionsOrganizationApi extends Api
 {
     use HasOrganizationMethod;
 
