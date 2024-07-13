@@ -26,7 +26,7 @@ class Phone extends BaseObject
         'contact'       => 'string|null',
         'source'        => 'string|null',
         'qc'            => 'string|null',
-        'type'          => 'string|null',
+        'type'          => 'enum:Phone\PhoneType|null',
         'number'        => 'string|null',
         'extension'     => 'string|null',
         'provider'      => 'string|null',

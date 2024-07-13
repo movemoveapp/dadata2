@@ -20,6 +20,9 @@ class DaDataServiceProvider extends ServiceProvider
         $this->app->singleton('dadata_address_cleaner', function () {
             return new CleanerAddressApi();
         });
+        $this->app->singleton('dadata_phone', function () {
+            return new CleanerPhoneApi();
+        });
     }
 
     /**
@@ -29,6 +32,6 @@ class DaDataServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/dadata.php' => config_path('dadata.php')
-        ], );
+        ]);
     }
 }

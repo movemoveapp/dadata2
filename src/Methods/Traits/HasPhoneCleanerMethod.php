@@ -5,7 +5,7 @@ namespace MoveMoveApp\DaData2\Methods\Traits;
 use Illuminate\Support\Str;
 use MoveMoveApp\DaData2\Exceptions\DaDataMethodExceptions;
 
-trait HasAddressCleanerMethod
+trait HasPhoneCleanerMethod
 {
     /**
      * @param string $method
@@ -17,7 +17,7 @@ trait HasAddressCleanerMethod
     {
         $method = Str::studly($method);
 
-        if (class_exists($class = "MoveMoveApp\\DaData2\\Methods\\Cleaner\\Address\\{$method}Method")) {
+        if (class_exists($class = "MoveMoveApp\\DaData2\\Methods\\Phone\\{$method}Method")) {
             return $class;
         }
 

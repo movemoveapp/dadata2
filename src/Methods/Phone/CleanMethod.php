@@ -1,33 +1,28 @@
 <?php
 
-namespace MoveMoveApp\DaData2\Methods\Cleaner\Address;
+namespace MoveMoveApp\DaData2\Methods\Phone;
 
 use GuzzleHttp\Client;
 use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\BaseMethod;
 
 /**
- * Address Standardization
- * Our address standardization service offers comprehensive and precise handling of address data, tailored specifically for locations within Russia.
- * Here's what our service includes:
- *  - Field Segmentation: Breaks down addresses into distinct components such as region, city, street, building, and apartment.
- *  - Postal Code Verification: Calculates the correct postal code using data from Russian Post to ensure accuracy in mail delivery.
- *  - Geolocation: Determines precise geographical coordinates for each address, facilitating location-based services and logistics planning.
- *  - Detailed Locality Insights: Provides information about the administrative district and borough of the city, nearest metro stations,
- *    and even details like the area and estimated cost of an apartment.+
- *  - Access to Essential Codes: Retrieves important administrative codes such as KLADR, FIAS (GAR), OKATO, OKTMO, and IFNS,
- *    which are crucial for various bureaucratic, legal, and logistical processes.
+ * Phone Number Standardization
+ * - Checks the phone number.
+ * - Updates with the current city area code / DEF-code.
+ * - Restores the carrier information, taking into account number portability between carriers.
+ * - Identifies the country, region, city, and time zone.
  *
- * @note: This service is designed to support the specific needs of users and businesses operating in Russia, ensuring compliance with local standards and regulations
+ * @note: This documentation is for developers. You can explore the region and carrier identification in the demo form, review usage scenarios, and connection options on the "Identify Region and Carrier by Phone Number" (https://dadata.ru/product/phone/) page.
  *
- * @link https://dadata.ru/api/clean/address/
+ * @link https://dadata.ru/api/clean/phone/
  * @property string $query
  */
 class CleanMethod extends BaseMethod
 {
     protected string $method        = 'POST';
     protected string $entryPoint;
-    protected string $expect        = 'Address\\Address[]';
+    protected string $expect        = 'Phone\\Phone[]';
     protected array  $parameters    = [
         0 => 'array',
     ];
@@ -38,7 +33,7 @@ class CleanMethod extends BaseMethod
      */
     public function __construct(Client &$client)
     {
-        $this->entryPoint = Router::cleanAddress();
+        $this->entryPoint = Router::cleanPhone();
 
         parent::__construct($client);
     }

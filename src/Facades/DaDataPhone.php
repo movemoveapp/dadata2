@@ -5,17 +5,15 @@ namespace MoveMoveApp\DaData2\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static suggest(string[] $array)
- * @method static geoLocate(string[] $array)
- * @method static suggestPostal(string[] $array)
+ * @method static clean(string[] $array)
  */
-class DaDataAddress extends Facade
+class DaDataPhone extends Facade
 {
     /**
      * @return string
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'dadata_address';
+        return 'dadata_phone';
     }
 }

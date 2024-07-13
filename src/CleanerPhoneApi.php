@@ -4,11 +4,12 @@ namespace MoveMoveApp\DaData2;
 
 use MoveMoveApp\DaData2\Http\Router;
 use MoveMoveApp\DaData2\Methods\Traits\HasAddressCleanerMethod;
+use MoveMoveApp\DaData2\Methods\Traits\HasPhoneCleanerMethod;
 
 
-class CleanerAddressApi extends Api
+class CleanerPhoneApi extends Api
 {
-    use HasAddressCleanerMethod;
+    use HasPhoneCleanerMethod;
 
     public function __construct()
     {

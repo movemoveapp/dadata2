@@ -143,6 +143,14 @@ class Router
     /**
      * @return string
      */
+    public static function cleanPhone(): string
+    {
+        return 'clean/phone';
+    }
+
+    /**
+     * @return string
+     */
     public static function geoLocateAddress(): string
     {
         return 'rs/geolocate/address';
