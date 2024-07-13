@@ -36,7 +36,10 @@ abstract class BaseMethod
         }
 
         try {
+
             $result = $this->client->request($this->method, $this->entryPoint, ['json' => $arguments]);
+
+            dd($this->entryPoint);
 
             return Type::cast(json_decode($result->getBody()), $this->expect);
 

@@ -127,6 +127,14 @@ class Router
     /**
      * @return string
      */
+    public static function suggestPostalUnit(): string
+    {
+        return 'rs/suggest/postal_unit';
+    }
+
+    /**
+     * @return string
+     */
     public static function cleanAddress(): string
     {
         return 'clean/address';

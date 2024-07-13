@@ -29,6 +29,6 @@ class DaDataServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/dadata.php' => config_path('dadata.php')
-        ], 'dadata-config');
+        ], );
     }
 }
