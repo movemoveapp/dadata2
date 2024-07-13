@@ -122,6 +122,13 @@ class Type
         $types = explode('|', $type);
 
         foreach ($types as $item) {
+            // Check to Enum types
+            if (count($checkToEnum = explode(':', $item)) == 2) {
+                if (class_exists($enum = "MoveMoveApp\\DaData2\\Enums\\$checkToEnum[1]")) {
+                    return $enum::match($value);
+                }
+            }
+
             if (in_array($value_type, $simple) && in_array($item, $simple)) {
                 settype($value, $item);
 
